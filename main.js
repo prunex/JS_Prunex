@@ -10,9 +10,8 @@ Given 2 ranges
 - val2 = min2 + ((val1 - min1) * (max2 - min2)) / (max1 - min1)
 */
 function scaleNumber(val1, min1, max1, min2, max2) {
-    var var2;
-    var2 = min2 + (((val1 - min1)*(max2 - min2))/(max1 -min1));
-    return var2;
+	var val2 = min2 + (((val1 - min1) * (max2 - min2)) / (max1 - min1));
+	return val2;
 }
 
 
@@ -22,7 +21,7 @@ Pick a random number between 2 ranges [min, max] with an optional field where
 you can pick the cuantity of the decimals
 */
 
-function randNumber(min, max, decimals = 0){
+function randNumber(min = 0, max = 100, decimals = 0) {
 	// var myArray = [];
 	// var max = 0;
 	// for(var i = 0; i < 100000000/2; i++){
@@ -37,21 +36,34 @@ function randNumber(min, max, decimals = 0){
 
 	//console.log(Math.floor(Math.random() * (max - min) + min));
 	var num = Math.random() * (max - min) + min;
+	/*
+		if (decimals > 0) {	
+			console.log(parseFloat(num).toFixed(decimals));
+		} else {
+			console.log(Math.trunc(num));
+			//console.log(num);
+		}
+	*/
 
-	//console.log(Math.trunc(num));
-	console.log(num);
-
+	return ((decimals > 0) ? parseFloat(num).toFixed(decimals) : Math.trunc(num));
 }
 
 
 
 /* Pick a random HEX color */
 
-function randomColorHEX (){
+function randomColorHEX() {
 	return '#' + Math.floor(Math.random() * 16777215).toString(16);
 }
 
-function randomColorRGB (){
 
-	
+/* Pick a random RGB color */
+function randomColorRGB() {
+	return ("rgb(" +
+		randNumber(undefined, 256, undefined) + ", " +
+		randNumber(undefined, 256, undefined) + ", " +
+		randNumber(undefined, 256, undefined) + ")"
+	);
+
+	//setInterval(function(){return document.getElementById("colorRGB").style.backgroundColor = randomColorRGB()}, 1000)
 }
